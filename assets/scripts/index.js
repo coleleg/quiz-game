@@ -2,10 +2,7 @@ let currentQuestion = 0;
 let correctAnswers = 0;
 
 $promptOutput = $('#question-prompt');
-$aOutput = $('#qa');
-$bOutput = $('#qb');
-$cOutput = $('#qc');
-$dOutput = $('#qd');
+
 
 const question1 = {
     prompt: "This is question 1.",
@@ -56,19 +53,19 @@ function questionInterval(string) {
     }, 250)
 }
 
-function aInterval(string) {
-    $aOutput.empty();
-    setInterval(function(){
-        $aOutput.innerHTML(string);
-    }, 1000)
-}
 
 $('.start').on('click', function () {
     $(this).addClass('hide');
     $('.questions').removeClass('hide');
+
     currentQuestion++;
+
     questionInterval(question1.prompt);
-    aInterval(question1.A);
+
+    function aText() {
+        $('#qa').html(question1.A);
+    }
+    setTimeout(aText, 1000);
     $("#qb").html(question1.B);
     $("#qc").html(question1.C);
     $("#qd").html(question1.D);
