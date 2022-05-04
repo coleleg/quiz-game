@@ -11,48 +11,48 @@ $dOutput = $('#qd');
 
 // questions and answers
 const question1 = {
-    prompt: 'This is question 1.',
-    A: 'A text', 
-    B: 'B text',
-    C: 'C text',
-    D: 'D text',
-    correct: 'A text'
+    prompt: `What is the name of Arya Stark's dire wolf?`,
+    A: 'Lady', 
+    B: 'Nymeria',
+    C: 'Ghost',
+    D: 'Summer',
+    correct: 'Nymeria'
 }
 
 const question2 = {
-    prompt: 'This is question 2.',
-    A: 'A text',
-    B: 'B text',
-    C: 'C text',
-    D: 'D text',
-    correct: 'B text'
+    prompt: 'At the end of Season 7, Cersei Lannister sends Euron Greyjoy sailing across the sea to fetch which group of sellswords?',
+    A: 'Second Sons',
+    B: 'The Golden Company',
+    C: 'The Yunkai',
+    D: 'Westerosis',
+    correct: 'The Golden Company'
 }
 
 const question3 = {
-    prompt: 'This is question 3.',
-    A: 'A text',
-    B: 'B text',
-    C: 'C text',
-    D: 'D text',
-    correct: 'C text'
+    prompt: 'Brienne pledges allegiance to which of these two people?',
+    A: 'Catelyn Stark and Jamie Lannister',
+    B: 'Arya Stark and Jamie Lannister',
+    C: 'Catelyn Stark and Renly Baratheon',
+    D: 'Arya and Sansa Stark',
+    correct: 'Catelyn Stark and Renly Baratheon'
 }
 
 const question4 = {
-    prompt: 'This is question 4.',
-    A: 'A text',
-    B: 'B text',
-    C: 'C text',
-    D: 'D text',
-    correct: 'D text'
+    prompt: 'What is the motto of House Greyjoy?',
+    A: 'We Do Not Sow',
+    B: 'Hear Me Roar',
+    C: 'Unbowed, Unbent, Unbroken',
+    D: 'Family, Duty, Honor',
+    correct: 'We Do Not Sow'
 }
 
 const question5 = {
-    prompt: 'This is question 5.',
-    A: 'A text',
-    B: 'B text',
-    C: 'C text',
-    D: 'D text',
-    correct: 'A text'
+    prompt: 'Which type of wine is used in an attempt to poison Daenery Targaryen?',
+    A: 'Dornish Red',
+    B: 'Vale White',
+    C: 'Stormland Red',
+    D: 'Arbor Red',
+    correct: 'Arbor Red'
 }
 
 // used to determine which question/answers to fill in the html
@@ -87,7 +87,7 @@ function questionInterval(string) {
             return clearInterval(interval)
         }
         $promptOutput.append(word + ' ');
-    }, 400)
+    }, 250)
 }
 
 // handles starting the game
@@ -104,22 +104,22 @@ $('.start').on('click', function () {
     function aText() {
         $aOutput.html(question.A);
     }
-    setTimeout(aText, 2500);
+    setTimeout(aText, 3500);
 
     function bText() {
         $bOutput.html(question.B);
     }
-    setTimeout(bText, 4500);
+    setTimeout(bText, 5500);
 
     function cText() {
         $cOutput.html(question.C);
     }
-    setTimeout(cText, 6500);
+    setTimeout(cText, 7500);
 
     function dText() {
         $dOutput.html(question.D);
     }
-    setTimeout(dText, 8500);
+    setTimeout(dText, 9500);
 
 });
 
@@ -283,7 +283,7 @@ function loadHighScores() {
         } else {
             highScoreSpan.innerHTML = i + 1 + '. ' + highScores[i];
         }
-        
+
         $('.leaderboard').append(highScoreSpan);
         console.log(highScoreSpan.innerHTML);
     }
