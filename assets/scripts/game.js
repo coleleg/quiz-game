@@ -16,7 +16,8 @@ const question1 = {
     B: 'Nymeria',
     C: 'Ghost',
     D: 'Summer',
-    correct: 'Nymeria'
+    correct: 'Nymeria',
+    tts: ''
 }
 
 const question2 = {
@@ -25,7 +26,8 @@ const question2 = {
     B: 'The Golden Company',
     C: 'The Yunkai',
     D: 'Westerosis',
-    correct: 'The Golden Company'
+    correct: 'The Golden Company',
+    tts: ''
 }
 
 const question3 = {
@@ -34,7 +36,8 @@ const question3 = {
     B: 'Arya Stark and Jamie Lannister',
     C: 'Catelyn Stark and Renly Baratheon',
     D: 'Arya and Sansa Stark',
-    correct: 'Catelyn Stark and Renly Baratheon'
+    correct: 'Catelyn Stark and Renly Baratheon',
+    tts: ''
 }
 
 const question4 = {
@@ -43,7 +46,8 @@ const question4 = {
     B: 'Hear Me Roar',
     C: 'Unbowed, Unbent, Unbroken',
     D: 'Family, Duty, Honor',
-    correct: 'We Do Not Sow'
+    correct: 'We Do Not Sow',
+    tts: ''
 }
 
 const question5 = {
@@ -52,7 +56,8 @@ const question5 = {
     B: 'Vale White',
     C: 'Stormland Red',
     D: 'Arbor Red',
-    correct: 'Arbor Red'
+    correct: 'Arbor Red',
+    tts: ''
 }
 
 // used to determine which question/answers to fill in the html
@@ -74,6 +79,18 @@ function checkQuestion() {
     if (currentQuestion === 5) {
         question = question5;
         return;
+    }
+}
+
+
+class Sound {
+    theme(){
+       const sound = new Audio(//audio files here);
+       return sound.play();
+    }
+    prompt(tts){
+        const sound = new Audio(tts);
+        return sound.play();
     }
 }
 
