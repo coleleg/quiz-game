@@ -17,7 +17,8 @@ const question1 = {
     C: 'Ghost',
     D: 'Summer',
     correct: 'Nymeria',
-    tts: ''
+    tts: `assets/tts/arya_stark's_dire_wolf.mp3`,
+    timeout: 3500
 }
 
 const question2 = {
@@ -27,7 +28,8 @@ const question2 = {
     C: 'The Yunkai',
     D: 'Westerosis',
     correct: 'The Golden Company',
-    tts: ''
+    tts: 'assets/tts/sellswords.mp3',
+    timeout: 8000
 }
 
 const question3 = {
@@ -37,7 +39,8 @@ const question3 = {
     C: 'Catelyn Stark and Renly Baratheon',
     D: 'Arya and Sansa Stark',
     correct: 'Catelyn Stark and Renly Baratheon',
-    tts: ''
+    tts: 'assets/tts/brienne_pledge.mp3',
+    timeout: 4500
 }
 
 const question4 = {
@@ -47,17 +50,19 @@ const question4 = {
     C: 'Unbowed, Unbent, Unbroken',
     D: 'Family, Duty, Honor',
     correct: 'We Do Not Sow',
-    tts: ''
+    tts: 'assets/tts/house_greyjoy_motto.mp3',
+    timeout: 4000
 }
 
 const question5 = {
-    prompt: 'Which type of wine is used in an attempt to poison Daenery Targaryen?',
+    prompt: 'Which type of wine is used in an attempt to poison Daenerys Targaryen?',
     A: 'Dornish Red',
     B: 'Vale White',
     C: 'Stormland Red',
     D: 'Arbor Red',
     correct: 'Arbor Red',
-    tts: ''
+    tts: 'assets/tts/daenerys_poison.mp3',
+    timeout: 5000
 }
 
 // used to determine which question/answers to fill in the html
@@ -85,12 +90,14 @@ function checkQuestion() {
 
 class Sound {
     theme(){
-       const sound = new Audio(//audio files here);
-       return sound.play();
+        const sound = new Audio(); //audio files here
+        sound.play();
     }
-    prompt(tts){
+
+    prompt(tts) {
+        tts = tts + '.mp3'
         const sound = new Audio(tts);
-        return sound.play();
+        sound.play();
     }
 }
 
@@ -109,7 +116,6 @@ function questionInterval(string) {
 
 // handles starting the game
 $('.start').on('click', function () {
-    console.log(document.cookie);
     currentQuestion = 0;
     yourScore = 0;
     currentQuestion++;
@@ -117,26 +123,29 @@ $('.start').on('click', function () {
     $('.questions').removeClass('hide');
 
     questionInterval(question.prompt);
+    const tts = question.tts;
+    const sound = new Audio(tts);
+    sound.play();
 
     function aText() {
         $aOutput.html(question.A);
     }
-    setTimeout(aText, 3500);
+    setTimeout(aText, question.timeout);
 
     function bText() {
         $bOutput.html(question.B);
     }
-    setTimeout(bText, 5500);
+    setTimeout(bText, question.timeout + 2000);
 
     function cText() {
         $cOutput.html(question.C);
     }
-    setTimeout(cText, 7500);
+    setTimeout(cText, question.timeout + 4000);
 
     function dText() {
         $dOutput.html(question.D);
     }
-    setTimeout(dText, 9500);
+    setTimeout(dText, question.timeout + 6000);
 
 });
 
@@ -156,26 +165,29 @@ $('.next').on('click', function() {
     checkQuestion();
     
     questionInterval(question.prompt);
+    const tts = question.tts;
+    const sound = new Audio(tts);
+    sound.play();
 
     function aText() {
         $aOutput.html(question.A);
     }
-    setTimeout(aText, 2500);
+    setTimeout(aText, question.timeout);
 
     function bText() {
         $bOutput.html(question.B);
     }
-    setTimeout(bText, 4500);
+    setTimeout(bText, question.timeout + 2000);
 
     function cText() {
         $cOutput.html(question.C);
     }
-    setTimeout(cText, 6500);
+    setTimeout(cText, question.timeout + 4000);
 
     function dText() {
         $dOutput.html(question.D);
     }
-    setTimeout(dText, 8500);
+    setTimeout(dText, question.timeout + 6000);
 
 });
 
@@ -192,7 +204,6 @@ $('#answerA').on('click', function() {
         return;
     }
     incorrectAnswer();
-
 })
 
 $('#answerB').on('click', function() {
