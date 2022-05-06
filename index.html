@@ -44,18 +44,26 @@
         <div class="next arrow-container flex">
             <p class="p">Next Question</p>
             <div class="arrow"></div>
-        </div>
+        </div> 
     </container>
     <container class="game-over hide">
         <h1 class="head">Game Over</h1>
         <div class="flex">
             <p class="p" id="your-score"></p>
+            <form class="form loser-form">
+                <input type="text" name="name" />
+            </form>
+            <button id="loser-submit">Submit High Score</button>
         </div>
     </container>
     <container class="victor hide">
         <h1 class="head">You Are Victorious</h1>
         <div class="flex">
             <p class="p" id="victor-score"></p>
+            <form class="form victor-form">
+                <input type="text" name="name" />
+            </form>
+            <button id="victor-submit">Submit High Score</button>
         </div>
     </container>
 

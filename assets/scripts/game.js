@@ -1,6 +1,8 @@
 let currentQuestion = 0;
 let yourScore = 0;
+let yourName;
 let highScores = [];
+
 
 // question and answer text bodies
 $promptOutput = $('#question-prompt');
@@ -65,7 +67,7 @@ const question5 = {
     timeout: 5000
 }
 
-// used to determine which question/answers to fill in the html
+// used to determine which question/answers to display
 let question = question1;
 
 function checkQuestion() {
@@ -87,19 +89,6 @@ function checkQuestion() {
     }
 }
 
-
-class Sound {
-    theme(){
-        const sound = new Audio(); //audio files here
-        sound.play();
-    }
-
-    prompt(tts) {
-        tts = tts + '.mp3'
-        const sound = new Audio(tts);
-        sound.play();
-    }
-}
 
 // prompts question with an interval
 function questionInterval(string) {
@@ -126,6 +115,13 @@ $('.start').on('click', function () {
     const tts = question.tts;
     const sound = new Audio(tts);
     sound.play();
+
+    // ends sound if an answer is clicked
+    $('.answers').on('click', function () {
+        sound.pause();
+        sound.currentTime = 0;
+    });
+        
 
     function aText() {
         $aOutput.html(question.A);
@@ -161,13 +157,18 @@ $('.next').on('click', function() {
     $dOutput.empty();
 
     currentQuestion++;
-    console.log(currentQuestion);
     checkQuestion();
     
     questionInterval(question.prompt);
     const tts = question.tts;
     const sound = new Audio(tts);
     sound.play();
+
+    // ends sound if an answer is clicked
+    $('.answers').on('click', function () {
+        sound.pause();
+        sound.currentTime = 0;
+    });
 
     function aText() {
         $aOutput.html(question.A);
@@ -199,11 +200,11 @@ $('#answerA').on('click', function() {
     }
     if (answer === question.correct) {
         yourScore++;
-        console.log('correct');
         correctAnswer();
         return;
     }
     incorrectAnswer();
+    
 })
 
 $('#answerB').on('click', function() {
@@ -213,7 +214,6 @@ $('#answerB').on('click', function() {
     }
     if (answer === question.correct) {
         yourScore++;
-        console.log('correct');
         correctAnswer();
         return;
     }
@@ -227,7 +227,6 @@ $('#answerC').on('click', function() {
     }
     if (answer === question.correct) {
         yourScore++;
-        console.log('correct');
         correctAnswer();
         return;
     }
@@ -242,7 +241,6 @@ $('#answerD').on('click', function() {
     }
     if (answer === question.correct) {
         yourScore++;
-        console.log('correct');
         correctAnswer();
         return;
     }
@@ -268,6 +266,10 @@ function correctAnswer() {
     $('#victor-score').html('Your Score: ' + yourScore );
     highScores.push(yourScore);
     setHighScore(highScores);
+    $('.victor-form').on('submit', function() {
+        $('.game-over').addClass('hide');
+        location.reload();
+    });
 }
 
 // handles the selection of an incorrect answer
@@ -275,12 +277,14 @@ function incorrectAnswer() {
     $('.questions').addClass('hide');
     $('.game-over').removeClass('hide');
     $('#your-score').html('Your Score: ' + yourScore);
-    highScores.push(yourScore);
-    setHighScore(highScores);
-    $('.game-over').on('click', function() {
-        $('.game-over').addClass('hide');
+    $('#loser-submit').on('click', function(event) {
+        event.preventDefault();
+        let data = $('.loser-form').serializeArray();
+        yourName = data[0].value;
+        highScores.push(yourName + ': ' + yourScore);
+        setHighScore(highScores);
         location.reload();
-    });
+    })
 }
 
 // high scores
@@ -313,7 +317,6 @@ function loadHighScores() {
         }
 
         $('.leaderboard').append(highScoreSpan);
-        console.log(highScoreSpan.innerHTML);
     }
 }
 
