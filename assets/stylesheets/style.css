@@ -100,7 +100,7 @@ main {
 }
 
 .game-over {
-    cursor: pointer;
+    display: block;
 }
 
 .p {
@@ -111,6 +111,24 @@ main {
 
 .head {
     color: #A1965E;
+}
+
+input {
+    border-radius: 50px;
+    box-shadow: inset 5px 5px 10px #364044,
+                inset -5px -5px 10px #48545a;
+    font-weight: bold;
+}
+
+::placeholder {
+    color: black;
+    font-weight: bold;
+}
+
+button {
+    border-radius: 9px;
+    background: linear-gradient(225deg, #918755, #aca165);
+    font-weight: bold;
 }
 
 .flex {
