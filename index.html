@@ -47,23 +47,14 @@
         </div> 
     </container>
     <container class="game-over hide">
-        <h1 class="head">Game Over</h1>
+        <h1 class="head" id="game-over-text"></h1>
         <div class="flex">
             <p class="p" id="your-score"></p>
-            <form class="form loser-form">
+            <form class="form score-form">
                 <input type="text" name="name" />
+                <button type="submit" id="submit">Submit High Score</button>
             </form>
-            <button id="loser-submit">Submit High Score</button>
-        </div>
-    </container>
-    <container class="victor hide">
-        <h1 class="head">You Are Victorious</h1>
-        <div class="flex">
-            <p class="p" id="victor-score"></p>
-            <form class="form victor-form">
-                <input type="text" name="name" />
-            </form>
-            <button id="victor-submit">Submit High Score</button>
+            
         </div>
     </container>
 

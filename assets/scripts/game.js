@@ -262,26 +262,36 @@ function correctAnswer() {
         return;
     }
 
-    $('.victor').removeClass('hide');
-    $('#victor-score').html('Your Score: ' + yourScore );
-    highScores.push(yourScore);
-    setHighScore(highScores);
-    $('.victor-form').on('submit', function() {
-        $('.game-over').addClass('hide');
+    $('.game-over').removeClass('hide');
+    $('#game-over-text').html('You Are Victorious');
+    $('#your-score').html('Your Score: ' + yourScore );
+    $('.score-form').on('submit', function(event) {
+        event.preventDefault();
+        let data = $('.score-form').serializeArray();
+        yourName = data[0].value;
+        highScores.push({
+            name: yourName + ': ',
+            score: yourScore
+        });
+        setHighScore(highScores);
         location.reload();
-    });
+    })
 }
 
 // handles the selection of an incorrect answer
 function incorrectAnswer() {
     $('.questions').addClass('hide');
     $('.game-over').removeClass('hide');
+    $('#game-over-text').html('Game Over');
     $('#your-score').html('Your Score: ' + yourScore);
-    $('#loser-submit').on('click', function(event) {
+    $('.score-form').on('submit', function(event) {
         event.preventDefault();
-        let data = $('.loser-form').serializeArray();
+        let data = $('.score-form').serializeArray();
         yourName = data[0].value;
-        highScores.push(yourName + ': ' + yourScore);
+        highScores.push({
+            name: yourName + ': ',
+            score: yourScore
+        });
         setHighScore(highScores);
         location.reload();
     })
@@ -302,8 +312,9 @@ function loadHighScores() {
     }
     leaderboard = JSON.parse(leaderboard);
     highScores = leaderboard;
-    highScores.sort();
-    highScores.reverse();
+
+    // sort array by score
+    highScores.sort((s1, s2) => (s1.score < s2.score) ? 1 : (s1.score > s2.score) ? -1 : 0);
 
     for (let i=0; i < 5; i++) {
         let highScoreSpan = document.createElement('span');
@@ -313,7 +324,7 @@ function loadHighScores() {
         if (highScores[i] === undefined) {
             highScoreSpan.innerHTML = '';
         } else {
-            highScoreSpan.innerHTML = i + 1 + '. ' + highScores[i];
+            highScoreSpan.innerHTML = i + 1 + '. ' + highScores[i].name + highScores[i].score;
         }
 
         $('.leaderboard').append(highScoreSpan);
