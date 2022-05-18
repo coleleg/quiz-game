@@ -11,10 +11,6 @@ body {
     align-items: center;
 }
 
-.high-scores {
-    margin: 2rem;
-}
-
 main {
     height: calc(100vh - 70px);
     display: flex;
@@ -23,7 +19,41 @@ main {
 }
 
 .start {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.start-header {
+    display: flex;
+    justify-content: center;
+}
+
+.start h1:hover {
     cursor: pointer;
+    transform: scale(1.10);
+}
+
+.leader-contain {
+    display: block;
+}
+
+.leader-title-contain {
+    display: flex;
+    justify-content: center;
+}
+
+.leader-title {
+    color: #A1965E;
+}
+
+.leaderboard {
+    color: #A1965E;
+}
+
+.high-scores {
+    margin: 1rem;
+    color: #A1965E;
 }
 
 .prompt {
@@ -144,7 +174,7 @@ button {
 
 @media(max-width: 1200px) {
     .prompt {
-        width: 40vw;
+        width: 70vw;
     }
     .answer {
         height: 15vw;
@@ -156,10 +186,6 @@ button {
     .high-scores {
         font-size: 75%;
         margin: .5rem;
-    }
-
-    .prompt {
-        width: 50vw;
     }
     
     .answer {
@@ -189,9 +215,6 @@ button {
 }
 
 @media(max-width: 480px) {
-    #header-title {
-        font-size: 50%;
-    }
     .high-scores {
         font-size: 50%;
         margin: 0;
@@ -200,5 +223,6 @@ button {
 
     .answers {
         font-size: 80%;
+        grid-column-gap: 20vw;
     }
 }

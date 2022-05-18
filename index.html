@@ -10,34 +10,43 @@
 </head>
 <body>
     <header class="header flex">
-        <h3 id="header-title">Leaderboard</h3>
-        <div class="leaderboard">
-
-        </div>
+        <h1>GoT Quiz</h1>
     </header>
 
     <main class="main">
         <container class="start">
-            <h1 class="head">START</h1>
+            <div class="start-header">
+                <h1 class="head">START</h1>
+            </div>
+            <div class="leader-contain">
+                <div class="leader-title-contain">
+                    <h3 class="leader-title">Leaderboard</h3>
+                </div>
+                <div class="leaderboard">
+        
+                </div>
+            </div>
         </container>
         <container class="questions hide">
             <container class="prompt flex">
-                    <h3 id="question-prompt"></h3>
+                    <h3 id="question-prompt" class="flex"></h3>
             </container> 
-            <container class = "answers">
-                <div class="answer flex top-left" id="answerA">
-                    <p class="answer-p" id="qa"></p>
-                </div>
-                <div class="answer flex top-right" id="answerB">
-                    <p class="answer-p" id="qb"></p>
-                </div>
-                <div class="answer flex bottom-left" id="answerC">
-                    <p class="answer-p" id="qc"></p>
-                </div>
-                <div class="answer flex bottom-right" id="answerD">
-                    <p class="answer-p" id="qd"></p>
-                </div>
-            </container>
+            <div class="flex">
+                <container class = "answers">
+                    <div class="answer flex top-left" id="answerA">
+                        <p class="answer-p" id="qa"></p>
+                    </div>
+                    <div class="answer flex top-right" id="answerB">
+                        <p class="answer-p" id="qb"></p>
+                    </div>
+                    <div class="answer flex bottom-left" id="answerC">
+                        <p class="answer-p" id="qc"></p>
+                    </div>
+                    <div class="answer flex bottom-right" id="answerD">
+                        <p class="answer-p" id="qd"></p>
+                    </div>
+                </container>
+            </div>
     </container>
     <container class="next-question hide">
         <h2 class="head">You got lucky this time... </h2>

@@ -20,7 +20,8 @@ const question1 = {
     D: 'Summer',
     correct: 'Nymeria',
     tts: `assets/tts/arya_stark's_dire_wolf.mp3`,
-    timeout: 3500
+    timeout: 3500,
+    btwn: 2000
 }
 
 const question2 = {
@@ -31,7 +32,8 @@ const question2 = {
     D: 'Westerosis',
     correct: 'The Golden Company',
     tts: 'assets/tts/sellswords.mp3',
-    timeout: 8000
+    timeout: 8000,
+    btwn: 2250
 }
 
 const question3 = {
@@ -42,7 +44,8 @@ const question3 = {
     D: 'Arya and Sansa Stark',
     correct: 'Catelyn Stark and Renly Baratheon',
     tts: 'assets/tts/brienne_pledge.mp3',
-    timeout: 4500
+    timeout: 5500,
+    btwn: 5500
 }
 
 const question4 = {
@@ -53,7 +56,8 @@ const question4 = {
     D: 'Family, Duty, Honor',
     correct: 'We Do Not Sow',
     tts: 'assets/tts/house_greyjoy_motto.mp3',
-    timeout: 4000
+    timeout: 4000,
+    btwn: 3000
 }
 
 const question5 = {
@@ -64,7 +68,8 @@ const question5 = {
     D: 'Arbor Red',
     correct: 'Arbor Red',
     tts: 'assets/tts/daenerys_poison.mp3',
-    timeout: 5000
+    timeout: 6000,
+    btwn: 2500
 }
 
 // used to determine which question/answers to display
@@ -131,17 +136,17 @@ $('.start').on('click', function () {
     function bText() {
         $bOutput.html(question.B);
     }
-    setTimeout(bText, question.timeout + 2000);
+    setTimeout(bText, question.timeout + question.btwn);
 
     function cText() {
         $cOutput.html(question.C);
     }
-    setTimeout(cText, question.timeout + 4000);
+    setTimeout(cText, question.timeout + (question.btwn * 2));
 
     function dText() {
         $dOutput.html(question.D);
     }
-    setTimeout(dText, question.timeout + 6000);
+    setTimeout(dText, question.timeout + (question.btwn * 3));
 
 });
 
@@ -315,6 +320,7 @@ function loadHighScores() {
 
     // sort array by score
     highScores.sort((s1, s2) => (s1.score < s2.score) ? 1 : (s1.score > s2.score) ? -1 : 0);
+
 
     for (let i=0; i < 5; i++) {
         let highScoreSpan = document.createElement('span');
